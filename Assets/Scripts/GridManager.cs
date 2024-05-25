@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class GridManager : MonoBehaviour
 {
     [SerializeField] GameObject tilePrefab;
     SpriteRenderer tileImage;
     [SerializeField] Sprite[] sprites;
-    [SerializeField] Sprite topSprite;
+    [SerializeField] Sprite[] topSprite;
     int gridWidth = 10;
     int gridHeight = 10;
     float tileSize = -32f / 100f;
@@ -19,6 +18,7 @@ public class GridManager : MonoBehaviour
     {
         CreateGrid();
     }
+
     void CreateGrid()
     {
         //x
@@ -35,27 +35,37 @@ public class GridManager : MonoBehaviour
                 tileImage = tile.GetComponent<SpriteRenderer>();
                 if (y == 0)
                 {
-                    tileImage.sprite = topSprite;
+                    tileImage.sprite = topSprite[Random.Range(0, sprites.Length)];
                     tileImage.flipY = true;
                 }
                 else
                 {
                     tileImage.sprite = sprites[Random.Range(0, sprites.Length)];
                 }
-                //add to dictionary
-                gridTiles.Add(pos, tile);
+                //add to dictionary using grid coordinates
+                Vector2 gridPos = new Vector2(x, y);
+                gridTiles.Add(gridPos, tile);
+
+                // Set grid position on the tile script
+                Tile tileScript = tile.GetComponent<Tile>();
+                if (tileScript != null)
+                {
+                    tileScript.SetGridPosition(gridPos);
+                }
             }
         }
     }
+
     public void DeleteTileAtPos(Vector2 _pos)
     {
         if (gridTiles.ContainsKey(_pos))
         {
-            ChangeSprites(_pos);
             Destroy(gridTiles[_pos]);
             gridTiles.Remove(_pos);
+            ChangeSprites(_pos);
         }
     }
+
     void ChangeSprites(Vector2 _pos)
     {
         Vector2[] directions = {
@@ -68,12 +78,17 @@ public class GridManager : MonoBehaviour
         foreach (Vector2 dir in directions)
         {
             Vector2 neighborPos = _pos + dir;
+
             if (gridTiles.ContainsKey(neighborPos))
             {
                 GameObject neighborTile = gridTiles[neighborPos];
                 print(neighborPos);
                 SpriteRenderer neighborTileImage = neighborTile.GetComponent<SpriteRenderer>();
-                neighborTileImage.sprite = topSprite;
+                neighborTileImage.sprite = topSprite[Random.Range(0, sprites.Length)];
+                if(dir == new Vector2(1, 0))
+                {
+                    neighborTileImage.flipY = true;
+                }
             }
         }
     }

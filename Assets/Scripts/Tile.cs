@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-
     private GridManager gridManager;
+    private Vector2 gridPosition;
 
     void Start()
     {
@@ -14,7 +14,11 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Vector2 position = new Vector2(transform.position.x, transform.position.y);
-        gridManager.DeleteTileAtPos(position);
+        gridManager.DeleteTileAtPos(gridPosition);
+    }
+
+    public void SetGridPosition(Vector2 pos)
+    {
+        gridPosition = pos;
     }
 }
