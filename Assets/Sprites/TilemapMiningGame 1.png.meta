@@ -1092,8 +1092,8 @@ TextureImporter:
       name: TilemapMiningGame 1_46
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 256
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -1113,8 +1113,8 @@ TextureImporter:
       name: TilemapMiningGame 1_47
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
+        x: 288
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -1134,7 +1134,7 @@ TextureImporter:
       name: TilemapMiningGame 1_48
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 64
         width: 32
         height: 32
@@ -1155,7 +1155,7 @@ TextureImporter:
       name: TilemapMiningGame 1_49
       rect:
         serializedVersion: 2
-        x: 96
+        x: 32
         y: 64
         width: 32
         height: 32
@@ -1176,7 +1176,7 @@ TextureImporter:
       name: TilemapMiningGame 1_50
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 64
         width: 32
         height: 32
@@ -1197,7 +1197,7 @@ TextureImporter:
       name: TilemapMiningGame 1_51
       rect:
         serializedVersion: 2
-        x: 160
+        x: 96
         y: 64
         width: 32
         height: 32
@@ -1218,7 +1218,7 @@ TextureImporter:
       name: TilemapMiningGame 1_52
       rect:
         serializedVersion: 2
-        x: 192
+        x: 128
         y: 64
         width: 32
         height: 32
@@ -1239,7 +1239,7 @@ TextureImporter:
       name: TilemapMiningGame 1_53
       rect:
         serializedVersion: 2
-        x: 224
+        x: 160
         y: 64
         width: 32
         height: 32
@@ -1260,8 +1260,8 @@ TextureImporter:
       name: TilemapMiningGame 1_54
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
+        x: 192
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -1281,8 +1281,8 @@ TextureImporter:
       name: TilemapMiningGame 1_55
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
+        x: 224
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -1302,8 +1302,8 @@ TextureImporter:
       name: TilemapMiningGame 1_56
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
+        x: 256
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -1323,8 +1323,8 @@ TextureImporter:
       name: TilemapMiningGame 1_57
       rect:
         serializedVersion: 2
-        x: 96
-        y: 32
+        x: 288
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -1344,7 +1344,7 @@ TextureImporter:
       name: TilemapMiningGame 1_58
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 32
         width: 32
         height: 32
@@ -1365,7 +1365,7 @@ TextureImporter:
       name: TilemapMiningGame 1_59
       rect:
         serializedVersion: 2
-        x: 160
+        x: 32
         y: 32
         width: 32
         height: 32
@@ -1386,7 +1386,7 @@ TextureImporter:
       name: TilemapMiningGame 1_60
       rect:
         serializedVersion: 2
-        x: 192
+        x: 64
         y: 32
         width: 32
         height: 32
@@ -1407,7 +1407,7 @@ TextureImporter:
       name: TilemapMiningGame 1_61
       rect:
         serializedVersion: 2
-        x: 224
+        x: 96
         y: 32
         width: 32
         height: 32
@@ -1428,8 +1428,8 @@ TextureImporter:
       name: TilemapMiningGame 1_62
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 128
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -1449,8 +1449,8 @@ TextureImporter:
       name: TilemapMiningGame 1_63
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
+        x: 160
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -1470,8 +1470,8 @@ TextureImporter:
       name: TilemapMiningGame 1_64
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 192
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -1491,8 +1491,8 @@ TextureImporter:
       name: TilemapMiningGame 1_65
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
+        x: 224
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -1512,7 +1512,7 @@ TextureImporter:
       name: TilemapMiningGame 1_66
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 0
         width: 32
         height: 32
@@ -1533,7 +1533,7 @@ TextureImporter:
       name: TilemapMiningGame 1_67
       rect:
         serializedVersion: 2
-        x: 160
+        x: 32
         y: 0
         width: 32
         height: 32
@@ -1554,7 +1554,7 @@ TextureImporter:
       name: TilemapMiningGame 1_68
       rect:
         serializedVersion: 2
-        x: 192
+        x: 64
         y: 0
         width: 32
         height: 32
@@ -1575,7 +1575,7 @@ TextureImporter:
       name: TilemapMiningGame 1_69
       rect:
         serializedVersion: 2
-        x: 224
+        x: 96
         y: 0
         width: 32
         height: 32
@@ -1588,6 +1588,90 @@ TextureImporter:
       bones: []
       spriteID: fbfd46927a22aed4083d38b02ffbb22a
       internalID: -1882762042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapMiningGame 1_70
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2baad6fae9178724ba541c1771160ab0
+      internalID: -1851741964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapMiningGame 1_71
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a787d005f8afaa43a6ac2a3e95dd260
+      internalID: 235327589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapMiningGame 1_72
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f848db4cd7e0074e8bf38b3e6c00700
+      internalID: -1227494065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TilemapMiningGame 1_73
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf824d8e34bcffb4aaba82ed3f69b129
+      internalID: 618271581
       vertices: []
       indices: 
       edges: []
@@ -1671,6 +1755,10 @@ TextureImporter:
       TilemapMiningGame 1_68: 585621020
       TilemapMiningGame 1_69: -1882762042
       TilemapMiningGame 1_7: 359345065
+      TilemapMiningGame 1_70: -1851741964
+      TilemapMiningGame 1_71: 235327589
+      TilemapMiningGame 1_72: -1227494065
+      TilemapMiningGame 1_73: 618271581
       TilemapMiningGame 1_8: 1500233160
       TilemapMiningGame 1_9: 1292070323
   mipmapLimitGroupName: 
