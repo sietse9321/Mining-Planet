@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -9,76 +6,59 @@ public class Drill : MonoBehaviour
     // How destroyed tiles should look.
     public TileBase destroyedTile;
 
+    bool isDrilling = false;
+    BoxCollider2D boxCollider;
     Tilemap tilemap;
 
     void Start()
     {
         tilemap = FindObjectOfType<Tilemap>();
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        MoveDrill();
+
+        if (Input.GetMouseButton(0))
         {
-            Drilling();
+            boxCollider.enabled = true;
+            print("boxcollider enabled");
+        }
+        else
+        {
+            boxCollider.enabled = false;
         }
     }
 
-    void Drilling()
+    /// <summary>
+    /// Handels the rotation for drill to look at mouse
+    /// </summary>
+    void MoveDrill()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 target = new Vector3(mousePos.x, mousePos.y, transform.position.z); // Maintain the same z coordinate as the object
+        mousePos.z = 0;
 
+        Vector3 target = new Vector3(mousePos.x, mousePos.y, transform.position.z);
         Vector3 dir = target - transform.position;
+        dir.z = 0;
         dir.Normalize();
-
         // Angle of object to mouse pos
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
-        float maxDistance = 1.5f;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, maxDistance);
-        Debug.DrawRay(transform.position, dir * maxDistance, Color.red);
+        Debug.DrawRay(transform.position, dir * 20f, Color.red);
+    }
 
-        if (hit.collider != null)
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Vector3 hitPosition = Vector3.zero;
+
+        foreach (ContactPoint2D hit in collision.contacts)
         {
-            Debug.Log("Hit collider: " + hit.collider.gameObject.name);
-            Debug.Log("Hit point: " + hit.point);
-
-            // Get the position of the hit point
-            Vector3Int pos = tilemap.WorldToCell(hit.point);
-            Debug.Log("Tilemap position: " + pos);
-
-            // Check if the tilemap has a tile at this position
-            if (tilemap.HasTile(pos))
-            {
-                Debug.Log("Tile exists at: " + pos);
-                tilemap.SetTile(pos, destroyedTile);
-                Debug.Log("Tile destroyed at: " + pos);
-            }
-            else
-            {
-                Debug.Log("No tile at: " + pos);
-            }
-        }
-        else
-        {
-            Debug.Log("No collider hit.");
+            hitPosition.x = hit.point.x - 0.01f * hit.normal.x;
+            hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
+            tilemap.SetTile(tilemap.WorldToCell(hitPosition), null);
         }
     }
 }
-
-
-
-
-
-
-
-
-//// Mouse pos to tile pos
-//Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-//RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
-//Vector3Int pos = tilemap.WorldToCell(hit.point);
-
-//// Replace tile with destroyed tile
-//tilemap.SetTile(pos, destroyedTile);
