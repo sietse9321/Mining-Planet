@@ -25,11 +25,13 @@ public class Movement : MonoBehaviour
         
         if(gravity.hit && Input.GetKey(KeyCode.Space) || gravity.hitRight && Input.GetKey(KeyCode.Space) || gravity.hitLeft && Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("erhm what the sigma");
+            Debug.Log("Jump");
             m_Rigidbody.AddForce(transform.up * jumpAmount, ForceMode2D.Impulse);
+            // 27 is 1 tile long jump
+            // 40 is 2 tile long jump
         }
 
-       
+
 
     }
 }

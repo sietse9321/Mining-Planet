@@ -8,7 +8,7 @@ public class Gravity : MonoBehaviour
     public float gravity;
     float velocity;
     float airTime;
-    float raycastlenght = 0.2f;
+    float raycastlenght = 0.15f;
     public RaycastHit2D hit;
     public RaycastHit2D hitLeft;
     public RaycastHit2D hitRight;
@@ -18,18 +18,19 @@ public class Gravity : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        level = LayerMask.GetMask("Level");
+        level = LayerMask.GetMask("Mine");
     }
 
     // Update is called once per frame
     void Update()
     {
-        hit = Physics2D.Raycast(new Vector2(transform.position.x + 0.05f, transform.localPosition.y), -Vector2.up, raycastlenght, level);
-        hitLeft = Physics2D.Raycast(new Vector2(transform.position.x - 0.05f, transform.localPosition.y), -Vector2.up, raycastlenght, level);
-        hitRight = Physics2D.Raycast(transform.position, -Vector2.up, raycastlenght, level);
-        Debug.DrawRay(new Vector3(transform.localPosition.x + 0.05f, transform.localPosition.y, 0.0f), -Vector2.up * raycastlenght, Color.red);
-        Debug.DrawRay(new Vector3(transform.localPosition.x - 0.05f, transform.localPosition.y, 0.0f), -Vector2.up * raycastlenght, Color.red);
+        hitRight = Physics2D.Raycast(new Vector2(transform.position.x + 0.03f, transform.localPosition.y), -Vector2.up, raycastlenght, level);
+        hitLeft = Physics2D.Raycast(new Vector2(transform.position.x - 0.03f, transform.localPosition.y), -Vector2.up, raycastlenght, level);
+        hit = Physics2D.Raycast(transform.position, -Vector2.up, raycastlenght, level);
+        Debug.DrawRay(new Vector3(transform.localPosition.x + 0.03f, transform.localPosition.y, 0.0f), -Vector2.up * raycastlenght, Color.red);
+        Debug.DrawRay(new Vector3(transform.localPosition.x - 0.03f, transform.localPosition.y, 0.0f), -Vector2.up * raycastlenght, Color.red);
         Debug.DrawRay(transform.position, -Vector2.up * raycastlenght, Color.red);
+        gravity = 150;
         if (hit || hitLeft || hitRight)
         {
             Debug.DrawRay(transform.position, -Vector2.up * raycastlenght, Color.green);
