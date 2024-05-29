@@ -1,31 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Movement : MonoBehaviour
 {
     Rigidbody2D m_Rigidbody;
-    float m_Speed = 1.4f;
-    float gravity = 3;
+    public float m_Speed = 20f;
+    public float jumpAmount = 49f;
+
+
+    Gravity gravity;
 
     void Start()
     {
-        //Fetch the Rigidbody from the GameObject with this script attached
+        // Fetch the Rigidbody from the GameObject with this script attached
         m_Rigidbody = GetComponent<Rigidbody2D>();
+        gravity = GetComponent<Gravity>();
     }
 
     void FixedUpdate()
     {
-        //Store user input as a movement vector
-        Vector3 m_Input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        float horizontal = Input.GetAxisRaw("Horizontal"); 
+        
+        m_Rigidbody.AddForce(transform.right * horizontal * m_Speed, ForceMode2D.Force);
+        
+        if(gravity.hit && Input.GetKey(KeyCode.Space) || gravity.hitRight && Input.GetKey(KeyCode.Space) || gravity.hitLeft && Input.GetKey(KeyCode.Space))
+        {
+            Debug.Log("erhm what the sigma");
+            m_Rigidbody.AddForce(transform.up * jumpAmount, ForceMode2D.Impulse);
+        }
 
-        //Apply the movement vector to the current position, which is
-        //multiplied by deltaTime and speed for a smooth MovePosition
-        m_Rigidbody.MovePosition(transform.position + m_Input * Time.deltaTime * m_Speed);
-    }
+       
 
-    void CustomGravity()
-    {
-        //m_Rigidbody.AddForce(transform.position);
     }
 }
