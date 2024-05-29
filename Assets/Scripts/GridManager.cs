@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
+    //? ************************** dont use****************************
     [SerializeField] GameObject tilePrefab;
     SpriteRenderer tileImage;
     [SerializeField] Sprite[] sprites;
@@ -50,7 +51,7 @@ public class GridManager : MonoBehaviour
                 Tile tileScript = tile.GetComponent<Tile>();
                 if (tileScript != null)
                 {
-                    tileScript.SetGridPosition(gridPos);
+                    //tileScript.SetGridPosition(gridPos);
                 }
             }
         }

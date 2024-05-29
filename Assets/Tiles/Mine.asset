@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mine
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 1556525807, guid: b894b3666086b504a935931ab6203140, type: 3}
-  m_DefaultGameObject: {fileID: 0}
+  m_DefaultGameObject: {fileID: 1583391648591210468, guid: 3b1ad4933b086a740b8dee0fb85be3ea, type: 3}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 46
