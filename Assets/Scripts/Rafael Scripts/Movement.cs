@@ -30,8 +30,5 @@ public class Movement : MonoBehaviour
             // 27 is 1 tile long jump
             // 40 is 2 tile long jump
         }
-
-
-
     }
 }

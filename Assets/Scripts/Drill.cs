@@ -5,6 +5,7 @@ public class Drill : MonoBehaviour
 {
     // How destroyed tiles should look.
     public TileBase destroyedTile;
+    [SerializeField] Transform playerTransform;
 
     bool isDrilling = false;
     BoxCollider2D boxCollider;
@@ -19,6 +20,9 @@ public class Drill : MonoBehaviour
     void Update()
     {
         MoveDrill();
+
+        //rafael
+        SnapDrillToPlayer();
 
         if (Input.GetMouseButton(0))
         {
@@ -60,5 +64,10 @@ public class Drill : MonoBehaviour
             hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
             tilemap.SetTile(tilemap.WorldToCell(hitPosition), null);
         }
+    }
+
+    void SnapDrillToPlayer()
+    {
+        transform.position = playerTransform.position;
     }
 }
