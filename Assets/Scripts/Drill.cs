@@ -19,10 +19,8 @@ public class Drill : MonoBehaviour
 
     void Update()
     {
-        MoveDrill();
-
-        //rafael
         SnapDrillToPlayer();
+        MoveDrill();
 
         if (Input.GetMouseButton(0))
         {
@@ -68,6 +66,6 @@ public class Drill : MonoBehaviour
 
     void SnapDrillToPlayer()
     {
-        transform.position = playerTransform.position;
+        transform.position = playerTransform.transform.position;
     }
 }

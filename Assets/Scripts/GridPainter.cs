@@ -8,8 +8,8 @@ public class GridPainter : MonoBehaviour
     //tilemap
     Tilemap tilemap;
     //width and height of the grid hight
-    int gridWidth = 10;
-    int gridHight = 10;
+    int gridWidth = 150;
+    int gridHeight = 40;
     float tileSize = -32f / 100f;
 
 
@@ -18,9 +18,9 @@ public class GridPainter : MonoBehaviour
         tilemap = FindObjectOfType<Tilemap>();
         for (int x = 0; x < gridWidth; x++)
         {
-            for (int y = 0; y < gridHight; y++)
+            for (int y = 0; y < gridHeight; y++)
             {
-                Vector3Int posistion = new Vector3Int(x-10, y-5, 0);
+                Vector3Int posistion = new Vector3Int(x-gridHeight, y-(gridWidth/4), 0);
                 tilemap.SetTile(posistion, tile);
             }
         }
