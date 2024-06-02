@@ -11,6 +11,7 @@ public class Drill : MonoBehaviour
 
     float drillTimer = 0;
     Vector3Int currentTile;
+    Vector3Int coloredTile;
 
     Tilemap tilemap;
 
@@ -23,6 +24,7 @@ public class Drill : MonoBehaviour
     {
         SnapDrillToPlayer();
         MoveDrill();
+        SetTileColor();
 
         if (Input.GetMouseButton(0))
         {
@@ -33,6 +35,29 @@ public class Drill : MonoBehaviour
             drillTimer = 0;
         }
     }
+
+    void SetTileColor()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 1f, whatLayer);
+        Vector3Int tileToColor = tilemap.WorldToCell(hit.point + (Vector2)transform.right * 0.01f);
+        if(hit.collider == null)
+        {
+            tilemap.SetColor(coloredTile, Color.white);
+            return;
+        }
+
+        if (coloredTile != tileToColor)
+        {
+            tilemap.SetColor(coloredTile, Color.white);
+            coloredTile = tileToColor;
+        }
+        else
+        {
+            tilemap.SetColor(tileToColor, Color.red);
+        }
+
+    }
+
 
     /// <summary>
     /// Handles the rotation for drill to look at mouse
