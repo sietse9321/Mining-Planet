@@ -1,15 +1,18 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class Drill : MonoBehaviour
 {
     public TileBase destroyedTile;
     //public for (upgrades?)
     public float drillingTime = 1f;
+    [SerializeField] float drillTimer = 0;
     [SerializeField] Transform playerTransform;
     [SerializeField] LayerMask whatLayer;
+    [SerializeField] Image chargeBar;
+    [SerializeField] GameObject material;
 
-    float drillTimer = 0;
     Vector3Int currentTile;
     Vector3Int coloredTile;
 
@@ -25,6 +28,7 @@ public class Drill : MonoBehaviour
         SnapDrillToPlayer();
         MoveDrill();
         SetTileColor();
+        chargeBar.fillAmount = drillTimer / drillingTime;
 
         if (Input.GetMouseButton(0))
         {
@@ -40,7 +44,7 @@ public class Drill : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 1f, whatLayer);
         Vector3Int tileToColor = tilemap.WorldToCell(hit.point + (Vector2)transform.right * 0.01f);
-        if(hit.collider == null)
+        if (hit.collider == null)
         {
             tilemap.SetColor(coloredTile, Color.white);
             return;
