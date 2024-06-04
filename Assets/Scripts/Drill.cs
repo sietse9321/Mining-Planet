@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -97,6 +98,8 @@ public class Drill : MonoBehaviour
                 tilemap.SetTile(tilePosition, destroyedTile);
                 Debug.Log("Tile destroyed at: " + tilePosition);
                 drillTimer = 0f;
+                GameObject blok = Instantiate(material);
+                blok.transform.position = hit.point + (Vector2)transform.right * 0.01f;
             }
         }
         else
