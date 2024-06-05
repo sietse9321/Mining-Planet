@@ -13,6 +13,7 @@ public class Gravity : MonoBehaviour
     public RaycastHit2D hitLeft;
     public RaycastHit2D hitRight;
     LayerMask level;
+    public bool raycastHit;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,11 @@ public class Gravity : MonoBehaviour
         {
             Debug.DrawRay(transform.position, -Vector2.up * raycastlenght, Color.green);
             gravity = 30;
+            raycastHit = true;
+        }
+        else 
+        {
+            raycastHit = false;
         }
                 
         
