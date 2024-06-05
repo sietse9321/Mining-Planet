@@ -42,9 +42,8 @@ public class Gravity : MonoBehaviour
 
     void FixedUpdate()
     {
-
         rigidBody.AddForce(-transform.up * gravity);
         //Faster the longer he falls for
-        //normal gravity when walking
+        
     }
 }
