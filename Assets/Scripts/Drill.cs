@@ -96,28 +96,28 @@ public class Drill : MonoBehaviour
         if (percentage > 0 && percentage <= 50)
         {
             oreInfo.AssignValues("Stone", 1, Color.white);
-            Debug.Log($"<color={"#808080"}>[STONE]</color>");
+            Debug.Log($"<color={"#808080"}><b>[STONE]</b></color>");
         }
         else if (percentage > 50 && percentage <= 60)
         {
             oreInfo.AssignValues("Copper", 1, Color.red);
-            Debug.Log($"<color={"#FFA500"}>[COPPER]</color>");
+            Debug.Log($"<color={"#FFA500"}><b>[COPPER]</b></color>");
         }
         else if (percentage > 60 && percentage <= 85)
         {
             oreInfo.AssignValues("Iron", 1, Color.grey);
-            Debug.Log($"<color={"#FFFFFF"}>[IRON]</color>");
+            Debug.Log($"<color={"#FFFFFF"}><b>[IRON]</b></color>");
         }
         else if (percentage > 85 && percentage <= 95)
         {
             oreInfo.AssignValues("Some random material", 1, Color.cyan);
-            Debug.Log($"<color={"#00FFFF"}>[SOME RANDOM SHIT]</color>");
+            Debug.Log($"<color={"#00FFFF"}><b>[SOME RANDOM SHIT]</b></color>");
         }
         else if (percentage > 95 && percentage <= 100)
         {
             oreInfo.AssignValues("Titanium", 1, Color.yellow);
             
-            Debug.Log($"<color={"#FFFFFF"}>[TITANIUM]</color>");
+            Debug.Log($"<color={"#FFFFFF"}><b>[TITANIUM]</b></color>");
         }
         else
         {
