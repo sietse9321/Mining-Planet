@@ -12,8 +12,17 @@ public class Movement : MonoBehaviour
 
     Gravity gravity;
 
+    private Inventory inventory;
+    [SerializeField] private Ui_Inventory uiInventory;
+
+
+    private void Awake(){
+        inventory = new Inventory();
+        uiInventory.SetInventory(inventory);
+    }
     void Start()
     {
+        
         // Fetch the Rigidbody from the GameObject with this script attached
         m_Rigidbody = GetComponent<Rigidbody2D>();
         gravity = GetComponent<Gravity>();

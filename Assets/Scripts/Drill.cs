@@ -110,7 +110,7 @@ public class Drill : MonoBehaviour
         }
         else if (percentage > 85 && percentage <= 95)
         {
-            oreInfo.AssignValues("Some random material", 1, Color.cyan);
+            oreInfo.AssignValues("Malachite", 1, Color.cyan);
             Debug.Log($"<color={"#00FFFF"}>[SOME RANDOM SHIT]</color>");
         }
         else if (percentage > 95 && percentage <= 100)

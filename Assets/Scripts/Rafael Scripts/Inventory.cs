@@ -2,14 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory
 {
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag != "Material") return;
-            print("Collision was player");
+    private List<Item> itemList;
 
-        //? call method to collect (get data) and destroy object
-        
+    public Inventory() {
+        itemList =  new List<Item>();
+
+        AddItem(new Item { itemType = Item.ItemType.Iron, amount = 1});
+        Debug.Log(itemList.Count);
+        Debug.Log("inventory");
+    }
+
+    public void AddItem(Item item) {
+        itemList.Add(item);
+    }
+
+    public List<Item> GetItemList(){
+        return itemList;
     }
 }
