@@ -3,9 +3,9 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     Rigidbody2D m_Rigidbody;
-    public float m_Speed = 20f;
-    public float jumpForce = 10f;
-    public float maxJumpTime = 0.5f; // Maximum time the jump force is applied
+    public float m_Speed = 45f;
+    public float jumpForce = 5f;
+    public float maxJumpTime = 0.14f; // Maximum time the jump force is applied
     private float jumpTimeCounter;
     private bool isJumping;
     private bool canJumpAgain;
