@@ -10,6 +10,11 @@ public class Inventory
         itemList =  new List<Item>();
 
         AddItem(new Item { itemType = Item.ItemType.Iron, amount = 1});
+        AddItem(new Item { itemType = Item.ItemType.Copper, amount = 1});
+        AddItem(new Item { itemType = Item.ItemType.Titanium, amount = 1});
+        AddItem(new Item { itemType = Item.ItemType.Malachite, amount = 1});
+        AddItem(new Item { itemType = Item.ItemType.Stone, amount = 1});
+        AddItem(new Item { itemType = Item.ItemType.Malachite, amount = 1});
         Debug.Log(itemList.Count);
         Debug.Log("inventory");
     }

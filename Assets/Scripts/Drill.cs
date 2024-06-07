@@ -100,7 +100,7 @@ public class Drill : MonoBehaviour
         }
         else if (percentage > 50 && percentage <= 60)
         {
-            oreInfo.AssignValues("Copper", 1, Color.red);
+            oreInfo.AssignValues("Copper", 1, new Color(0.9989774f, 0.7289563f, 0.456288f )); //FFC77E
             Debug.Log($"<color={"#FFA500"}>[COPPER]</color>");
         }
         else if (percentage > 60 && percentage <= 85)

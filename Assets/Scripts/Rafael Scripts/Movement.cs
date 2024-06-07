@@ -17,12 +17,12 @@ public class Movement : MonoBehaviour
 
 
     private void Awake(){
-        inventory = new Inventory();
-        uiInventory.SetInventory(inventory);
     }
     void Start()
     {
         
+        inventory = new Inventory();
+        uiInventory.SetInventory(inventory);
         // Fetch the Rigidbody from the GameObject with this script attached
         m_Rigidbody = GetComponent<Rigidbody2D>();
         gravity = GetComponent<Gravity>();
