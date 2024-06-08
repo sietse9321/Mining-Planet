@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -16,36 +17,29 @@ public class Movement : MonoBehaviour
     [SerializeField] private Ui_Inventory uiInventory;
 
 
-    private void Awake(){
-    }
     void Start()
     {
-        
         inventory = new Inventory();
         uiInventory.SetInventory(inventory);
         // Fetch the Rigidbody from the GameObject with this script attached
         m_Rigidbody = GetComponent<Rigidbody2D>();
         gravity = GetComponent<Gravity>();
+
+        ItemWorld.SpawnItemWorld(new Vector3(10, 5), new Item { itemType = Item.ItemType.Iron, amount = 1});
+        ItemWorld.SpawnItemWorld(new Vector3(10, 10), new Item { itemType = Item.ItemType.Copper, amount = 1});
+        ItemWorld.SpawnItemWorld(new Vector3(0, 20), new Item { itemType = Item.ItemType.Titanium, amount = 1});
     }
 
     void Update()
     {
-        // Check if the jump key is pressed and the character can jump again
-        if (gravity.raycastHit && Input.GetKeyDown(KeyCode.Space) && canJumpAgain)
-        {
-            isJumping = true;
-            jumpTimeCounter = maxJumpTime;
-            m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, jumpForce); // Initial jump force
-        }
-
-        // Check if the jump key is released
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            isJumping = false;
-        }
+        Jump();
     }
-
     void FixedUpdate()
+    {
+        Walk();
+        RaycastCheck();
+    }
+    void Walk()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         m_Rigidbody.AddForce(transform.right * horizontal * m_Speed, ForceMode2D.Force);
@@ -62,8 +56,8 @@ public class Movement : MonoBehaviour
                 isJumping = false;
             }
         }
-
-        // Reset canJumpAgain when the character lands
+    }
+    void RaycastCheck(){
         if (gravity.raycastHit && !isJumping)
         {
             canJumpAgain = true;
@@ -71,6 +65,30 @@ public class Movement : MonoBehaviour
         else
         {
             canJumpAgain = false;
+        }
+    }
+    void Jump(){
+        // Check if the jump key is pressed and the character can jump again
+        if (gravity.raycastHit && Input.GetKeyDown(KeyCode.Space) && canJumpAgain)
+        {
+            isJumping = true;
+            jumpTimeCounter = maxJumpTime;
+            m_Rigidbody.velocity = new Vector2(m_Rigidbody.velocity.x, jumpForce); // Initial jump force
+        }
+
+        // Check if the jump key is released
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            isJumping = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider) {
+        ItemWorld itemWorld = collider.GetComponent<ItemWorld>();
+        if (itemWorld != null) {
+            Debug.Log("Touching an item");
+            inventory.AddItem(itemWorld.GetItem());
+            itemWorld.DestroySelf();
         }
     }
 }

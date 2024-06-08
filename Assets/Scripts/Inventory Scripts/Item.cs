@@ -25,4 +25,17 @@ public class Item
             case ItemType.Stone:        return ItemAssets.Instance.stoneSprite;
         }
     }
+
+    public bool isStackable() {
+        switch (itemType) {
+            default:
+            case ItemType.Iron:
+            case ItemType.Copper:
+            case ItemType.Stone:
+                return true;
+            case ItemType.Malachite:
+            case ItemType.Titanium:
+                return false;
+        }
+    }
 }

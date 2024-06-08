@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,8 @@ public class Ui_Inventory : MonoBehaviour
     private Inventory inventory;
     private Transform itemSlotContainer;
     private Transform itemSlotTemplate;
-
+    [SerializeField] RectTransform itemSlotRectTransform;
+    [SerializeField] Image image;
 
     private void Awake() {
         itemSlotContainer = transform.Find("itemSlotContainer");
@@ -18,19 +20,29 @@ public class Ui_Inventory : MonoBehaviour
     public void SetInventory(Inventory inventory) 
     {
         this.inventory = inventory;
+
+        inventory.OnItemListChanged += Inventory_OnItemListChanged;
+        RefreshInventoryItem();
+    }
+
+    private void Inventory_OnItemListChanged(object sender, System.EventArgs e) {
         RefreshInventoryItem();
     }
 
     private void RefreshInventoryItem(){
+        foreach(Transform child in itemSlotContainer){
+            if(child == itemSlotTemplate) continue;
+            Destroy(child.gameObject);
+        }
         int x = 0;
         int y = 0;
         float itemSlotCellSize = 100f;
         foreach (Item item in inventory.GetItemList()){
-            RectTransform itemSlotRectTransform = itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
+            itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
             itemSlotRectTransform.gameObject.SetActive(true);
             
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
-            Image image = itemSlotRectTransform.Find("image").GetComponent<Image>();
+            image = itemSlotRectTransform.Find("Spriteimage").GetComponent<Image>();
             image.sprite = item.GetSprite();
             x++;
             if(x > 4) {

@@ -77,10 +77,11 @@ public class Drill : MonoBehaviour
                 tilemap.SetTile(tilePosition, destroyedTile);
                 //Debug.Log("Tile destroyed at: " + tilePosition);
                 drillTimer = 0f;
-                GameObject ore = Instantiate(orePrefab);
-                oreInfo = ore.gameObject.GetComponent<OreInfo>();
-                ore.transform.position = hit.point + (Vector2)transform.right * 0.01f;
-                OreGenerator();
+                ItemWorld.SpawnItemWorld(hit.point + (Vector2)transform.right * 0.01f, new Item { itemType = Item.ItemType.Iron, amount = 1});
+                //GameObject ore = Instantiate(orePrefab);
+                //oreInfo = ore.gameObject.GetComponent<OreInfo>();
+                //ore.transform.position = hit.point + (Vector2)transform.right * 0.01f;
+                //OreGenerator();
             }
         }
         else

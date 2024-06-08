@@ -10,6 +10,9 @@ private void Awake(){
     Instance = this;
 }
 
+
+public Transform itemWorldPrefab;
+
 public Sprite titaniumSprite;
 public Sprite stoneSprite;
 public Sprite malachiteSprite;
