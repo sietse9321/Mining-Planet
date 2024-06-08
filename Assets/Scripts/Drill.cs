@@ -129,7 +129,7 @@ public class Drill : MonoBehaviour
     }
     void Start()
     {
-        tilemap = FindObjectOfType<Tilemap>();
+        tilemap = FindObjectOfType<GridPainter>().minableMap;
     }
 
     void Update()
