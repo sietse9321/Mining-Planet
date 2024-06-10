@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
 
     Gravity gravity;
 
-    Inventory inventory;
+    private Inventory inventory;
     [SerializeField] private Ui_Inventory uiInventory;
 
 
@@ -24,13 +24,14 @@ public class Movement : MonoBehaviour
         // Fetch the Rigidbody from the GameObject with this script attached
         m_Rigidbody = GetComponent<Rigidbody2D>();
         gravity = GetComponent<Gravity>();
-        
+
+        ItemWorld.SpawnItemWorld(new Vector3(10, 5), new Item { itemType = Item.ItemType.Iron, amount = 1});
+        ItemWorld.SpawnItemWorld(new Vector3(10, 10), new Item { itemType = Item.ItemType.Copper, amount = 1});
+        ItemWorld.SpawnItemWorld(new Vector3(0, 20), new Item { itemType = Item.ItemType.Titanium, amount = 1});
     }
 
     void Update()
     {
-        //Debug.Log(inventory.GetItemList()[0].itemType);
-        //Debug.Log(inventory.GetItemList()[0].amount);
         Jump();
     }
     void FixedUpdate()

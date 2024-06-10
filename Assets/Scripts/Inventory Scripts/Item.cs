@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Item
 {
-    public enum ItemType { Copper, Iron, Malachite, Stone, Titanium }
+    public enum ItemType {
+        Copper,
+        Iron,
+        Malachite,
+        Stone, 
+        Titanium
+    }
 
     public ItemType itemType;
     public int amount;
 
-    public Sprite GetSprite() 
-    {
-        switch (itemType) 
-        {
+    public Sprite GetSprite() {
+        switch (itemType) {
             default:
             case ItemType.Iron:         return ItemAssets.Instance.ironSprite;
             case ItemType.Copper:       return ItemAssets.Instance.copperSprite;
@@ -22,10 +26,8 @@ public class Item
         }
     }
 
-    public bool isStackable() 
-    {
-        switch (itemType) 
-        {
+    public bool isStackable() {
+        switch (itemType) {
             default:
             case ItemType.Iron:
             case ItemType.Copper:
