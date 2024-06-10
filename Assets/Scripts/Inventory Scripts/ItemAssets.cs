@@ -6,17 +6,16 @@ public class ItemAssets : MonoBehaviour
 {
 public static ItemAssets Instance { get; private set;}
 
-    private void Awake()
-    {
-        Instance = this;
-    }
+private void Awake(){
+    Instance = this;
+}
 
 
-    public Transform itemWorldPrefab;
+public Transform itemWorldPrefab;
 
-    public Sprite stoneSprite;
-    public Sprite titaniumSprite;
-    public Sprite malachiteSprite;
-    public Sprite copperSprite;
-    public Sprite ironSprite;
+public Sprite titaniumSprite;
+public Sprite stoneSprite;
+public Sprite malachiteSprite;
+public Sprite copperSprite;
+public Sprite ironSprite;
 }
