@@ -13,14 +13,8 @@ public class Movement : MonoBehaviour
 
     Gravity gravity;
 
-    Inventory inventory;
-    [SerializeField] private Ui_Inventory uiInventory;
-
-
     void Start()
     {
-        inventory = new Inventory();
-        uiInventory.SetInventory(inventory);
         // Fetch the Rigidbody from the GameObject with this script attached
         m_Rigidbody = GetComponent<Rigidbody2D>();
         gravity = GetComponent<Gravity>();
@@ -79,15 +73,6 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
         {
             isJumping = false;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collider) {
-        ItemWorld itemWorld = collider.GetComponent<ItemWorld>();
-        if (itemWorld != null) {
-            Debug.Log("Touching an item");
-            inventory.AddItem(itemWorld.GetItem());
-            itemWorld.DestroySelf();
         }
     }
 }
