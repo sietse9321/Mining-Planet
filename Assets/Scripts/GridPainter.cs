@@ -14,7 +14,7 @@ public class GridPainter : MonoBehaviour
     int gridWidth = 150;
     int gridHeight = 40;
 
-    void Start()
+    void Awake()
     {
         //generate grid by loops
         //generates loop from left to right and down to up

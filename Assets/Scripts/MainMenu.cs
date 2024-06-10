@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    DataSaver dataSaver;
     public void ContinueGame()
     {
-        //load game
+        SceneManager.LoadScene("Sietse");
+        dataSaver.LoadGame();
     }
     public void NewGame()
     {
@@ -17,5 +20,9 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+    private void Awake()
+    {
+        dataSaver = FindObjectOfType<DataSaver>();
     }
 }

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5894735499124815180}
   - component: {fileID: 5352283563168777154}
   - component: {fileID: 2652081840930932194}
-  - component: {fileID: 8704321660581733094}
   - component: {fileID: 1810165800918977056}
   m_Layer: 6
   m_Name: Player
@@ -135,6 +134,7 @@ MonoBehaviour:
   m_Speed: 45
   jumpForce: 5
   maxJumpTime: 0.14
+  uiInventory: {fileID: 0}
 --- !u!114 &2652081840930932194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,18 +149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: 30
   raycastHit: 0
---- !u!114 &8704321660581733094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 95822631304489846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e241912cde64a4c40a283374d43fa42e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &1810165800918977056
 CircleCollider2D:
   m_ObjectHideFlags: 0
