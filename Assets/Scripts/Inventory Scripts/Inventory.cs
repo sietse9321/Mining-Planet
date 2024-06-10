@@ -15,6 +15,7 @@ public class Inventory
 
         Debug.Log(itemList.Count);
         Debug.Log("inventory");
+        AddItem(new Item{ itemType = Item.ItemType.Iron, amount = 10} );
     }
 
     public void AddItem(Item item) {
