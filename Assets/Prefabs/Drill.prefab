@@ -4879,7 +4879,7 @@ MonoBehaviour:
   destroyedTile: {fileID: 0}
   drillingTime: 1
   drillTimer: 0
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 3007901059316837861, guid: 3d16aa3bf325cc64384128da4dd58ca1, type: 3}
   whatLayer:
     serializedVersion: 2
     m_Bits: 8
