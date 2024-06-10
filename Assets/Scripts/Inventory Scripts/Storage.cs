@@ -14,7 +14,7 @@ public class Storage : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     void Start()
     {
         storage = GetComponent<Transform>();
-        ui_inventoryBackground = storage.Find("Background").GetComponent<Transform>();
+        //ui_inventoryBackground = storage.Find("Background").GetComponent<Transform>();
         inventory = new Inventory();
         uiInventory.SetInventory(inventory);
     }
