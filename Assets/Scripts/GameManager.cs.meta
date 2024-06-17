@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ef82bcb3c5385d242865af711288918c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - gridPainter: {instanceID: 0}
+  - mine: {fileID: 11400000, guid: 73dda0a9fc1a9b945b372af58c40dcdb, type: 2}
+  - lampSprite: {fileID: 11400000, guid: 0820db0a85b486c46b9e8775c01ead79, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

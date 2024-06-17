@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Drill : MonoBehaviour
 {
     public TileBase destroyedTile;
+    public TileBase LampTile;
     //public for (upgrades?)
     public float drillingTime = 1f;
     [SerializeField] float drillTimer = 0;
@@ -19,28 +20,28 @@ public class Drill : MonoBehaviour
     Vector3Int currentTile;
     Vector3Int coloredTile;
 
-    Tilemap tilemap;
+    Tilemap tileMap;
 
     Item.ItemType oreType;
 
     void SetTileColor()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 1f, whatLayer);
-        Vector3Int tileToColor = tilemap.WorldToCell(hit.point + (Vector2)transform.right * 0.01f);
+        Vector3Int tileToColor = tileMap.WorldToCell(hit.point + (Vector2)transform.right * 0.01f);
         if (hit.collider == null)
         {
-            tilemap.SetColor(coloredTile, Color.white);
+            tileMap.SetColor(coloredTile, Color.white);
             return;
         }
 
         if (coloredTile != tileToColor)
         {
-            tilemap.SetColor(coloredTile, Color.white);
+            tileMap.SetColor(coloredTile, Color.white);
             coloredTile = tileToColor;
         }
         else
         {
-            tilemap.SetColor(tileToColor, Color.red);
+            tileMap.SetColor(tileToColor, Color.red);
         }
     }
 
@@ -56,7 +57,9 @@ public class Drill : MonoBehaviour
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         //debug ray
+        #if UNITY_EDITOR
         Debug.DrawRay(transform.position, dir * 20f, Color.red);
+        #endif
     }
 
     void DrillTiles()
@@ -65,20 +68,20 @@ public class Drill : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 1f, whatLayer);
         //if no collider return
         if (hit.collider == null)
-        {
+        {   
             currentTile = Vector3Int.zero;
             drillTimer = 0f;
             return;
         }
-        Vector3Int tilePosition = tilemap.WorldToCell(hit.point + (Vector2)transform.right * 0.01f);
+        Vector3Int tilePosition = tileMap.WorldToCell(hit.point + (Vector2)transform.right * 0.01f);
         if (tilePosition == currentTile)
         {
-            if ((drillTimer += Time.deltaTime) >= drillingTime && tilemap.GetTile(tilePosition) != null)
+            if ((drillTimer += Time.deltaTime) >= drillingTime && tileMap.GetTile(tilePosition) != null)
             {
-                tilemap.SetTile(tilePosition, destroyedTile);
-                //Debug.Log("Tile destroyed at: " + tilePosition);
+                tileMap.SetTile(tilePosition, destroyedTile);
+                Debug.Log("Tile destroyed at: " + tilePosition);
                 drillTimer = 0f;
-                ItemWorld.SpawnItemWorld(hit.point + (Vector2)transform.right * 0.01f, new Item { itemType = oreType, amount = 1});
+                ItemWorld.SpawnItemWorld(hit.point + (Vector2)transform.right * 0.01f, new Item { itemType = oreType, amount = 1 });
                 //GameObject ore = Instantiate(orePrefab);
                 //oreInfo = ore.gameObject.GetComponent<OreInfo>();
                 //ore.transform.position = hit.point + (Vector2)transform.right * 0.01f;
@@ -99,92 +102,29 @@ public class Drill : MonoBehaviour
         switch (percentage)
         {
             case > 0 and <= 50:
-            oreType = Item.ItemType.Stone;
-            Debug.Log($"<color={"#808080"}>[STONE]</color>");
+                oreType = Item.ItemType.Stone;
+                Debug.Log($"<color={"#808080"}>[STONE]</color>");
                 break;
             case > 50 and <= 60:
-            oreType = Item.ItemType.Copper;
-            Debug.Log($"<color={"#FFA500"}>[COPPER]</color>");
+                oreType = Item.ItemType.Copper;
+                Debug.Log($"<color={"#FFA500"}>[COPPER]</color>");
                 break;
             case > 60 and <= 85:
-            oreType = Item.ItemType.Iron;
-            Debug.Log($"<color={"#FFFFFF"}>[IRON]</color>");
+                oreType = Item.ItemType.Iron;
+                Debug.Log($"<color={"#FFFFFF"}>[IRON]</color>");
                 break;
             case > 85 and <= 95:
-            oreType = Item.ItemType.Malachite;
-            Debug.Log($"<color={"#00FFFF"}>[Malachite]</color>");
+                oreType = Item.ItemType.Malachite;
+                Debug.Log($"<color={"#00FFFF"}>[Malachite]</color>");
                 break;
             case > 95 and <= 100:
-            oreType = Item.ItemType.Titanium;
-            Debug.Log($"<color={"#FFFFFF"}>[TITANIUM]</color>");
-            break;
+                oreType = Item.ItemType.Titanium;
+                Debug.Log($"<color={"#FFFFFF"}>[TITANIUM]</color>");
+                break;
             default:
-            Debug.LogWarning("Big oopsie no lootie" + percentage);
+                Debug.LogWarning("Big oopsie no lootie" + percentage);
                 break;
         }
-
-        /*if (percentage > 0 && percentage <= 50)
-        {
-            oreType = Item.ItemType.Stone;
-            Debug.Log($"<color={"#808080"}>[STONE]</color>");
-        }
-        else if (percentage > 50 && percentage <= 60)
-        {
-            oreType = Item.ItemType.Copper;
-            Debug.Log($"<color={"#FFA500"}>[COPPER]</color>");
-        }
-        else if (percentage > 60 && percentage <= 85)
-        {
-            oreType = Item.ItemType.Iron;
-            Debug.Log($"<color={"#FFFFFF"}>[IRON]</color>");
-        }
-        else if (percentage > 85 && percentage <= 95)
-        {
-            oreType = Item.ItemType.Malachite;
-            Debug.Log($"<color={"#00FFFF"}>[Malachite]</color>");
-        }
-        else if (percentage > 95 && percentage <= 100)
-        {
-            
-            oreType = Item.ItemType.Titanium;
-            Debug.Log($"<color={"#FFFFFF"}>[TITANIUM]</color>");
-        }
-        else
-        {
-            Debug.LogWarning("Big oopsie no lootie" + percentage);
-        }
-
-
-        /*if (percentage > 0 && percentage <= 50)
-        {
-            oreInfo.AssignValues("Stone", 1, Color.white);
-            Debug.Log($"<color={"#808080"}>[STONE]</color>");
-        }
-        else if (percentage > 50 && percentage <= 60)
-        {
-            oreInfo.AssignValues("Copper", 1, new Color(0.9989774f, 0.7289563f, 0.456288f )); //FFC77E
-            Debug.Log($"<color={"#FFA500"}>[COPPER]</color>");
-        }
-        else if (percentage > 60 && percentage <= 85)
-        {
-            oreInfo.AssignValues("Iron", 1, Color.grey);
-            Debug.Log($"<color={"#FFFFFF"}>[IRON]</color>");
-        }
-        else if (percentage > 85 && percentage <= 95)
-        {
-            oreInfo.AssignValues("Malachite", 1, Color.cyan);
-            Debug.Log($"<color={"#00FFFF"}>[SOME RANDOM SHIT]</color>");
-        }
-        else if (percentage > 95 && percentage <= 100)
-        {
-            oreInfo.AssignValues("Titanium", 1, Color.yellow);
-            
-            Debug.Log($"<color={"#FFFFFF"}>[TITANIUM]</color>");
-        }
-        else
-        {
-            Debug.LogWarning("Big oopsie no lootie" + percentage);
-        }*/
     }
 
     void SnapDrillToPlayer()
@@ -193,7 +133,8 @@ public class Drill : MonoBehaviour
     }
     void Start()
     {
-        tilemap = FindObjectOfType<Tilemap>();
+        GameObject mineObject = GameObject.FindWithTag("Mine");
+        tileMap = mineObject.GetComponent<Tilemap>();
     }
 
     void Update()
@@ -210,6 +151,17 @@ public class Drill : MonoBehaviour
         else
         {
             drillTimer = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            print("Doing the placing");
+            Vector3 playerPos = playerTransform.position;
+
+            Vector3Int cellPos = tileMap.WorldToCell(playerPos);
+            print("Cellpos is empty");
+            tileMap.SetTile(cellPos, LampTile);
+            
         }
     }
 }
