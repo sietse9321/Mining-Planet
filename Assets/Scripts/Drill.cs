@@ -16,6 +16,8 @@ public class Drill : MonoBehaviour
     [SerializeField] GameObject orePrefab;
     OreInfo oreInfo;
 
+    [SerializeField] Inventory inventory;
+
     Vector3Int currentTile;
     Vector3Int coloredTile;
 
@@ -78,11 +80,12 @@ public class Drill : MonoBehaviour
                 tilemap.SetTile(tilePosition, destroyedTile);
                 //Debug.Log("Tile destroyed at: " + tilePosition);
                 drillTimer = 0f;
-                ItemWorld.SpawnItemWorld(hit.point + (Vector2)transform.right * 0.01f, new Item { itemType = oreType, amount = 1});
+                //ItemWorld.SpawnItemWorld(hit.point + (Vector2)transform.right * 0.01f, new Item { itemType = oreType, amount = 1});
                 //GameObject ore = Instantiate(orePrefab);
                 //oreInfo = ore.gameObject.GetComponent<OreInfo>();
                 //ore.transform.position = hit.point + (Vector2)transform.right * 0.01f;
                 OreGenerator();
+                inventory.AddItem(new Item(oreType, 1));
             }
         }
         else
@@ -99,27 +102,27 @@ public class Drill : MonoBehaviour
         switch (percentage)
         {
             case > 0 and <= 50:
-            oreType = Item.ItemType.Stone;
-            Debug.Log($"<color={"#808080"}>[STONE]</color>");
+                oreType = Item.ItemType.Stone;
+                Debug.Log($"<color={"#808080"}>[STONE]</color>");
                 break;
             case > 50 and <= 60:
-            oreType = Item.ItemType.Copper;
-            Debug.Log($"<color={"#FFA500"}>[COPPER]</color>");
+                oreType = Item.ItemType.Copper;
+                Debug.Log($"<color={"#FFA500"}>[COPPER]</color>");
                 break;
             case > 60 and <= 85:
-            oreType = Item.ItemType.Iron;
-            Debug.Log($"<color={"#FFFFFF"}>[IRON]</color>");
+                oreType = Item.ItemType.Iron;
+                Debug.Log($"<color={"#FFFFFF"}>[IRON]</color>");
                 break;
             case > 85 and <= 95:
-            oreType = Item.ItemType.Malachite;
-            Debug.Log($"<color={"#00FFFF"}>[Malachite]</color>");
+                oreType = Item.ItemType.Malachite;
+                Debug.Log($"<color={"#00FFFF"}>[Malachite]</color>");
                 break;
             case > 95 and <= 100:
-            oreType = Item.ItemType.Titanium;
-            Debug.Log($"<color={"#FFFFFF"}>[TITANIUM]</color>");
-            break;
+                oreType = Item.ItemType.Titanium;
+                Debug.Log($"<color={"#FFFFFF"}>[TITANIUM]</color>");
+                break;
             default:
-            Debug.LogWarning("Big oopsie no lootie" + percentage);
+                Debug.LogWarning("Big oopsie no lootie" + percentage);
                 break;
         }
 
