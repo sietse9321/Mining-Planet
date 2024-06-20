@@ -15,7 +15,7 @@ TagManager:
   - UI
   - Player
   - Material
-  - 
+  - Background
   - 
   - 
   - 
@@ -42,4 +42,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Particle
+    uniqueID: 3408979625
     locked: 0

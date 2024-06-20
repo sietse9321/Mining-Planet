@@ -18,7 +18,7 @@ public class GridPainter : MonoBehaviour
         {
             for (int y = 0; y < gridHeight; y++)
             {
-                Vector3Int backgroundPos = new Vector3Int(x - gridHeight, y - (gridWidth / 4), 0);
+                Vector3Int backgroundPos = new Vector3Int(x - 50, y - 40, 0);
                 if (y == (gridHeight - 1))
                 {
                     backgroundMap.SetTile(backgroundPos, background[1]);
@@ -38,7 +38,7 @@ public class GridPainter : MonoBehaviour
         {
             for (int y = 0; y < gridHeight; y++)
             {
-                Vector3Int posistion = new Vector3Int(x - gridHeight, y - (gridWidth / 4), 0);
+                Vector3Int posistion = new Vector3Int(x - 50, y - 40, 0);
                 minableMap.SetTile(posistion, tile);
             }
         }

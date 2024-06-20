@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GridPainter gridPainter;
     [SerializeField] TileBase mine;
     [SerializeField] TileBase lampSprite;
-    Tilemap map;
+    Tilemap map; 
     PlayerData playerData = new PlayerData();
     string filePath;
     bool game = false;
@@ -75,11 +75,17 @@ public class GameManager : MonoBehaviour
         }
         NewGameSetup();
     }
+    /// <summary>
+    /// finds gridpaint component and calls a method
+    /// </summary>
     void NewGameSetup()
     {
         gridPainter = FindObjectOfType<GridPainter>();
         gridPainter.CreateMap();
     }
+    /// <summary>
+    /// loads data from json for player pos and grid
+    /// </summary>
     void LoadGame()
     {
         gridPainter = FindObjectOfType<GridPainter>();
@@ -138,9 +144,9 @@ public class GameManager : MonoBehaviour
     {
         //turn on settings
     }
-    public void SaveAndExit()
+    public void Exit()
     {
-        SaveGame();
+        CancelInvoke();
         SceneManager.LoadScene(0);
     }
     public void QuitGame()
