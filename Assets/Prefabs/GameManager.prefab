@@ -47,3 +47,4 @@ MonoBehaviour:
   gridPainter: {fileID: 0}
   mine: {fileID: 11400000, guid: 73dda0a9fc1a9b945b372af58c40dcdb, type: 2}
   lampSprite: {fileID: 11400000, guid: 9688e68332a772140a6167e6b458d4b1, type: 2}
+  pauseMenu: {fileID: 7076732805969863183, guid: 3762cdcd991c7724b8ed9017c351b459, type: 3}

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Material
   - Mine
+  - PauseMenu
   layers:
   - Default
   - TransparentFX

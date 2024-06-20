@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -170,11 +169,20 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    /// <summary>
+    /// takes a vector3int and covnerts it to a string
+    /// </summary>
+    /// <param name="vector"></param>
+    /// <returns></returns>
     string Vector3IntToString(Vector3Int vector)
     {
         return $"{vector.x},{vector.y},{vector.z}";
     }
-
+    /// <summary>
+    /// takes a string and converts it to a vector3int
+    /// </summary>
+    /// <param name="vectorString"></param>
+    /// <returns></returns>
     Vector3Int StringToVector3Int(string vectorString)
     {
         string[] values = vectorString.Split(',');
