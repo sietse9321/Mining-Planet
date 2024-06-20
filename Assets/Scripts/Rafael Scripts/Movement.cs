@@ -4,6 +4,8 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     Rigidbody2D m_Rigidbody;
+    public Animator playerAnimator;
+    public Transform character;
     public float m_Speed = 45f;
     public float jumpForce = 5f;
     public float maxJumpTime = 0.14f; // Maximum time the jump force is applied
@@ -33,6 +35,22 @@ public class Movement : MonoBehaviour
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         m_Rigidbody.AddForce(transform.right * horizontal * m_Speed, ForceMode2D.Force);
+        if(horizontal != 0)
+        {
+            playerAnimator.SetBool("Walking", true);
+
+            if(horizontal < 0)
+            {
+                character.localScale = new Vector3(4, 4, 0);
+            } else if(horizontal > 0)
+            {
+                character.localScale = new Vector3(-4, 4, 0);
+            }
+        }
+        else
+        {
+            playerAnimator.SetBool("Walking", false);
+        }
 
         if (isJumping)
         {

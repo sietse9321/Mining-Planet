@@ -1,42 +1,70 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneTemplate;
 using UnityEngine;
 
-public class Inventory
+public class Inventory : MonoBehaviour
 {
+    public List<Item> items = new();
+    public string owner;
 
-    public event EventHandler OnItemListChanged;
+    public int amountInItems;
+    [SerializeField] GetItemSlots itemSlots;
 
-    private List<Item> itemList;
+    [SerializeField] int pIndexT = 1;
+    [SerializeField] Sprite spriteT;
 
-    public Inventory() {
-        itemList =  new List<Item>();
+    static public Inventory instance;
 
-        Debug.Log(itemList.Count);
-        Debug.Log("inventory");
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
     }
 
-    public void AddItem(Item item) {
-        if (item.isStackable()){
+    void Start() => owner = gameObject.name;
+    void Update() => amountInItems = items.Count;
+
+    public void AddItem(Item pNewItem)
+    {
+
+        if (pNewItem.isStackable())
+        {
             bool itemAlreadyInInventory = false;
-            foreach(Item inventoryItem in itemList) {
-                if (inventoryItem.itemType == item.itemType) {
-                    inventoryItem.amount += item.amount;
+            foreach (Item item in items)
+            {
+                if (item.itemType == pNewItem.itemType)
+                {
+                    item.amount += pNewItem.amount;
+                    itemSlots.ChangeText(items.IndexOf(item), item.amount);
+                    itemSlots.itemSlots[items.IndexOf(item)].GetItemInside(item);
                     itemAlreadyInInventory = true;
                 }
             }
-            if (!itemAlreadyInInventory) {
-                itemList.Add(item);
+            if (!itemAlreadyInInventory && items.Count < 18)
+            {
+                items.Add(pNewItem);
+                itemSlots.itemSlots[items.IndexOf(pNewItem)].GetItemInside(pNewItem);
+                itemSlots.ChangeImage(items.IndexOf(pNewItem),
+                pNewItem.GetSprite(),
+                pNewItem.itemType);
             }
-        } else {
-            itemList.Add(item);
         }
-        
-        OnItemListChanged?.Invoke(this, EventArgs.Empty);
-    }
+        else
+        {
+            if (items.Count < 18)
+            {
+                items.Add(pNewItem);
+                itemSlots.itemSlots[items.IndexOf(pNewItem)].GetItemInside(pNewItem);
+                Debug.Log("added " + pNewItem.itemType);
+                itemSlots.ChangeImage(items.IndexOf(pNewItem), pNewItem.GetSprite(), pNewItem.itemType);
+            }
 
-    public List<Item> GetItemList(){
-        return itemList;
+        }
+    }
+    public List<Item> GetItemList()
+    {
+        return items;
     }
 }
