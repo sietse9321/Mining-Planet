@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Reflection;
 using Unity.VisualScripting;
+using static Item;
 
 public class ItemSlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IDropHandler
 {
@@ -90,34 +91,34 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //canvasGroup.blocksRaycasts = false;
+        canvasGroup.blocksRaycasts = false;
+        DraggingItem.item = eventData.pointerDrag.GetComponent<ItemSlot>().itemInSlot;
+
+
+        itemInSlot = null;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+
         rectTransform.anchoredPosition = itemslotposition;
-        //canvasGroup.blocksRaycasts = true;
+
+        canvasGroup.blocksRaycasts = true;
+
+        if (eventData.pointerDrag  != null)
+        {
+            SetItemslotSprite(null, Item.ItemType.Empty);
+            SetItemslotText(0);
+        } else
+        {
+            rectTransform.anchoredPosition = itemslotposition;
+        }
     }
+
 
     public void OnDrag(PointerEventData eventData)
     {
         rectTransform.anchoredPosition += eventData.delta;
-
-        tempItemSlot = GetComponent<ItemSlot>();
-        itemInSlot = null;
-        //Debug.Log("old itemslot: " + oldItemSlot.itemInSlot.amount);
-        //Debug.Log("old itemslot: " + oldItemSlot.itemInSlot.itemType);
-
-        if (eventData.pointerDrag != null)
-        {   
-            
-            ItemSlot tempItemSlot = eventData.pointerDrag.GetComponent<ItemSlot>();
-            //Debug.Log("new itemslot: " + tempItemSlot.itemInSlot.itemType);
-            //Debug.Log("new itemslot: " + tempItemSlot.itemInSlot.amount);
-            
-            SetItemslotSprite(null, Item.ItemType.Empty);
-            SetItemslotText(0);
-        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -127,16 +128,17 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnDrop(PointerEventData eventData)
     {
+        if (DraggingItem.item == null) return;
+
+
         if (eventData.pointerDrag != null)
-        {   
+        {
             ItemSlot tempItemSlot = eventData.pointerDrag.GetComponent<ItemSlot>();
-            //Debug.Log("new itemslot: " + tempItemSlot.itemInSlot.itemType);
-            //Debug.Log("new itemslot: " + tempItemSlot.itemInSlot.amount);
-            
-            SetItemslotSprite(tempItemSlot.tempItemSlot.itemInSlot.GetSprite(), tempItemSlot.tempItemSlot.itemInSlot.itemType);
-            SetItemslotText(tempItemSlot.tempItemSlot.itemInSlot.amount);
-            //itemInSlot = null;
+            SetItemslotSprite(DraggingItem.item.GetSprite(), DraggingItem.item.itemType);
+            SetItemslotText(DraggingItem.item.amount);
+            itemInSlot = DraggingItem.item;
+            DraggingItem.item = null;
+
         }
-        //oldItemSlot
     }
 }

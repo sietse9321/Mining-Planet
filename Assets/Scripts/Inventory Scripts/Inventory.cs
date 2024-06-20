@@ -15,17 +15,16 @@ public class Inventory : MonoBehaviour
     [SerializeField] int pIndexT = 1;
     [SerializeField] Sprite spriteT;
 
-    void Start()
+    static public Inventory instance;
+
+    private void Awake()
     {
-        owner = gameObject.name;
-        //items.Add(new Item (Item.ItemType.Iron, 2));
-        //spriteT = items[0].GetSprite();
+        if (instance == null)
+            instance = this;
     }
 
-    void Update()
-    {
-        amountInItems = items.Count;
-    }
+    void Start() => owner = gameObject.name;
+    void Update() => amountInItems = items.Count;
 
     public void AddItem(Item pNewItem)
     {
@@ -47,10 +46,8 @@ public class Inventory : MonoBehaviour
             {
                 items.Add(pNewItem);
                 itemSlots.itemSlots[items.IndexOf(pNewItem)].GetItemInside(pNewItem);
-                //itemSlots.itemSlots[items.IndexOf(pNewItem)].GetItemInside(pNewItem);
-                Debug.Log("added " + pNewItem.itemType);
-                itemSlots.ChangeImage(items.IndexOf(pNewItem), 
-                pNewItem.GetSprite(), 
+                itemSlots.ChangeImage(items.IndexOf(pNewItem),
+                pNewItem.GetSprite(),
                 pNewItem.itemType);
             }
         }
