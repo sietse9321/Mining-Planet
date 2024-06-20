@@ -14,11 +14,14 @@ public class GridPainter : MonoBehaviour
     int gridHeight = 40;
     private void Start()
     {
+        //generate the background using width and height
         for (int x = 0; x < gridWidth; x++)
         {
             for (int y = 0; y < gridHeight; y++)
             {
+                //sets the pos
                 Vector3Int backgroundPos = new Vector3Int(x - 50, y - 40, 0);
+                //the first row
                 if (y == (gridHeight - 1))
                 {
                     backgroundMap.SetTile(backgroundPos, background[1]);

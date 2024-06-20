@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        //singleton
         if (Instance == null)
         {
             Instance = this;
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
         }
     }
     /// <summary>
-    /// load previuous save game
+    /// load previous save game
     /// </summary>
     public void ContinueGame()
     {
@@ -94,19 +96,26 @@ public class GameManager : MonoBehaviour
         string jsonData = File.ReadAllText(filePath);
         playerData = JsonUtility.FromJson<PlayerData>(jsonData);
 
+        //clears all tiles in map
         map.ClearAllTiles();
+        //foreach tiledata in playerdata tiles
         foreach (TileData tileData in playerData.tiles)
         {
+            //creates new tile
             TileBase tile;
+            //if tilename is lamp
             if (tileData.tileName == "Lamp")
             {
+                //sets tile sprite
                 tile = lampSprite;
             }
             else
             {
+                //sets tile sprite
                 tile = mine;
             }
-            map.SetTile(tileData.position, tile);
+            //sets the tile using the just created tile with the position
+            map.SetTile(StringToVector3Int(tileData.positionString), tile);
         }
         Transform playerTransform = FindObjectOfType<Movement>().transform;
         playerTransform.position = playerData.playerPosition;
@@ -118,26 +127,31 @@ public class GameManager : MonoBehaviour
         map = gridPainter.minableMap;
 
         playerData.tiles = new List<TileData>();
-        foreach (var pos in map.cellBounds.allPositionsWithin)
+        //foreach pos in map
+        foreach (Vector3Int pos in map.cellBounds.allPositionsWithin)
         {
+            //tile is met position
             TileBase tile = map.GetTile(pos);
+            //if tile is not null
             if (tile != null)
             {
+                //adds a new tile to tiledata
                 playerData.tiles.Add(new TileData
                 {
-                    position = new Vector3Int(pos.x, pos.y, pos.z),
+                    positionString = Vector3IntToString(pos),
                     tileName = tile.name
                 });
             }
         }
-
+        //gets and sets the player position in playerData
         Transform playerTransform = FindObjectOfType<Movement>().transform;
         playerData.playerPosition = playerTransform.position;
-
+        //filepath to use
         filePath = Application.persistentDataPath + "/GameData.json";
-
+        //to json
         string jsonData = JsonUtility.ToJson(playerData, true);
         print(filePath);
+        //writes all text
         File.WriteAllText(filePath, jsonData);
     }
     public void Settings()
@@ -146,19 +160,32 @@ public class GameManager : MonoBehaviour
     }
     public void Exit()
     {
+        //cancel invoke to not save in main menu
         CancelInvoke();
         SceneManager.LoadScene(0);
     }
     public void QuitGame()
     {
+        //quits the application
         Application.Quit();
     }
 
+    string Vector3IntToString(Vector3Int vector)
+    {
+        return $"{vector.x},{vector.y},{vector.z}";
+    }
+
+    Vector3Int StringToVector3Int(string vectorString)
+    {
+        string[] values = vectorString.Split(',');
+        return new Vector3Int(int.Parse(values[0]), int.Parse(values[1]), int.Parse(values[2]));
+    }
 }
+
 [System.Serializable]
 public struct TileData
 {
-    public Vector3Int position;
+    public string positionString;
     public string tileName;
 }
 
