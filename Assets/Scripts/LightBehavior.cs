@@ -14,7 +14,6 @@ public class LightBehavior : MonoBehaviour
     void RandomLight()
     {
         int number = Random.Range(minNumber, maxNumber+1);
-        print(number);
 
         if (number == minNumber)
         {

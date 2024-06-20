@@ -4877,6 +4877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyedTile: {fileID: 0}
+  LampTile: {fileID: 11400000, guid: 0820db0a85b486c46b9e8775c01ead79, type: 2}
   drillingTime: 1
   drillTimer: 0
   playerTransform: {fileID: 3007901059316837861, guid: 3d16aa3bf325cc64384128da4dd58ca1, type: 3}

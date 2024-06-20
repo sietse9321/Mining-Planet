@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1471336699600125598}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2878307, y: -0.46182394, z: 0.55638075}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -95,7 +95,7 @@ Transform:
   m_GameObject: {fileID: 1539935305655359118}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.052530766, y: -0.008, z: -0.55638075}
+  m_LocalPosition: {x: 0, y: 0.032199994, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -143,7 +143,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 40
   m_Sprite: {fileID: 21300000, guid: 27713cf8fa8a49c4eab3aed395149442, type: 3}
-  m_Color: {r: 0.6367924, g: 1, b: 0.9716052, a: 1}
+  m_Color: {r: 0.9477827, g: 0.9622642, b: 0.6309185, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -179,7 +179,7 @@ Transform:
   m_GameObject: {fileID: 2457591350172313447}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.9999967, w: -0.0025577608}
-  m_LocalPosition: {x: -0.062, y: 0.148, z: 0}
+  m_LocalPosition: {x: 0, y: 0.204, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -201,9 +201,9 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.6
-  m_Color: {r: 0.5801887, g: 1, b: 0.9558093, a: 1}
-  m_Intensity: 1.91
-  m_LightVolumeIntensity: 1
+  m_Color: {r: 0.9622642, g: 0.93268985, b: 0.5582948, a: 1}
+  m_Intensity: 1
+  m_LightVolumeIntensity: 100
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -221,8 +221,8 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 180
-  m_PointLightOuterAngle: 185.14
+  m_PointLightInnerAngle: 119.79292
+  m_PointLightOuterAngle: 212.9767
   m_PointLightInnerRadius: 1
   m_PointLightOuterRadius: 2
   m_ShapeLightParametricSides: 5
