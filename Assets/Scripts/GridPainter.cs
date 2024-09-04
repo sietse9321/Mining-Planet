@@ -36,7 +36,7 @@ public class GridPainter : MonoBehaviour
     public void CreateMap()
     {
         //generate grid by loops
-        //generates loop from left to right and down to up
+            //generates loop from left to right and down to up
         for (int x = 0; x < gridWidth; x++)
         {
             for (int y = 0; y < gridHeight; y++)
